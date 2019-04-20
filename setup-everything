@@ -8,6 +8,7 @@ cd ~/"$repo_name"
 sudo apt-get update
 sudo apt-get install -y python3-venv
 sudo apt-get install -y meld
+sudo apt-get install -y xterm
 deactivate 2>>/dev/null
 if [ ! \( -a env \) ]; then
     python3 -m venv env
