@@ -18,7 +18,4 @@ pip install -r requirements.txt
 
 # do each startup
 
-tmux new -s "$repo_name"
-tmux attach -t "$repo_name" \; new-window bash --rcfile pytest-window-bashrc &
-tmux attach -t "$repo_name" \; new-window bash --rcfile git-status-bashrc &
-tmux attach -t "$repo_name" \; new-window bash --rcfile misc-bashrc &
+tmux new -s "$repo_name" bash --rcfile pytest-window-bashrc \; new-window bash --rcfile git-status-bashrc \; new-window bash --rcfile misc-bashrc \;
