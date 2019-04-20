@@ -17,5 +17,5 @@ source env/bin/activate
 pip install -r requirements.txt
 
 # do each startup
-
+tmux kill-session -t "$repo_name"
 tmux new -s "$repo_name" bash --rcfile pytest-window-bashrc \; split-window -h bash --rcfile git-status-bashrc \; split-window -p 66 bash --rcfile misc-bashrc \;
