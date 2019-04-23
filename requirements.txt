@@ -1,6 +1,5 @@
 apipkg==1.4
 execnet==1.5.0
-pkg-resources==0.0.0
 py==1.4.34
 pytest==3.2.3
 pytest-forked==0.2
