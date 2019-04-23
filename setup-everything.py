@@ -3,13 +3,15 @@ import subprocess
 
 
 def main():
-    print("hello world")
     install_packages()
 
 
 def install_packages():
-    subprocess.call(['sudo', 'pacman', '-S', 'git'])
-    subprocess.call(['sudo', 'apt-get', 'install', 'python3-venv'])
+    packages = ['python3-venv', 'meld', 'xterm']
+    subprocess.call(['sudo', 'apt-get', 'update'])
+    for package in packages:
+        print('\nInstalling {}'.format(package))
+        subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
 
 
 if __name__ == "__main__":
