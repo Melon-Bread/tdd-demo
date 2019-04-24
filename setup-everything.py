@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 import subprocess
 import os
-
+import platform
+import sys
 
 def main():
     install_packages()
     setup_venv()
-    launch_terminals()
+    launch_terminals(platform.system())
 
 
 def install_packages():
@@ -27,7 +28,7 @@ def setup_venv():
     os.system('. env/bin/activate && pip install -r requirements.txt')
 
 
-def launch_terminals():
+def launch_terminals(operating_system):
     terminal_names = ['testing', 'git status', 'expore']
     terminal_rcfiles = ['pytest-window-bashrc',
                         'git-status-bashrc',
@@ -35,9 +36,14 @@ def launch_terminals():
    
     i = 0
     while i < len(terminal_names):
-        subprocess.Popen(['xterm', '-T', terminal_names[i], 
-                         '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
-        i += 1
+        if (operating_system == 'Linux'):
+            subprocess.Popen(['xterm', '-T', terminal_names[i], 
+                             '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+            i += 1
+        else:
+            print("Operating system not supported")
+            sys.exit()
+            
 
 if __name__ == "__main__":
     main()
