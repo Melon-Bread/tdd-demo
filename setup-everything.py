@@ -10,13 +10,17 @@ def main():
     launch_terminals(platform.system())
 
 
-def install_packages():
-    packages = ['python3-venv', 'meld', 'xterm']
+def install_packages(operating_system):
+    if operating_system == 'Linux':
+        packages = ['python3-venv', 'meld', 'xterm']
 
-    subprocess.call(['sudo', 'apt-get', 'update'])
-    for package in packages:
-        print('\nInstalling {}'.format(package))
-        subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
+        subprocess.call(['sudo', 'apt-get', 'update'])
+        for package in packages:
+            print('\nInstalling {}'.format(package))
+            subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
+    else:
+        print("Operating system no supported")
+        sys.exit()
 
 
 def setup_venv():
@@ -28,7 +32,7 @@ def setup_venv():
     os.system('. env/bin/activate && pip install -r requirements.txt')
 
 
-def launch_terminals(operating_system):
+def launch_terminals():
     terminal_names = ['testing', 'git status', 'expore']
     terminal_rcfiles = ['pytest-window-bashrc',
                         'git-status-bashrc',
@@ -36,13 +40,9 @@ def launch_terminals(operating_system):
    
     i = 0
     while i < len(terminal_names):
-        if (operating_system == 'Linux'):
-            subprocess.Popen(['xterm', '-T', terminal_names[i], 
-                             '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
-            i += 1
-        else:
-            print("Operating system not supported")
-            sys.exit()
+        subprocess.Popen(['xterm', '-T', terminal_names[i], 
+                         '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+        i += 1
             
 
 if __name__ == "__main__":
