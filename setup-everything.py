@@ -21,10 +21,9 @@ def setup_venv():
     if not os.path.exists('env/'):
         print("Creating virtual enviorment")
         subprocess.call(['python3', '-m', 'venv', 'env'])
-    venv = "env/bin/activate"
-    exec(compile(open(venv, "rb").read(), venv, 'exec'), dict(__file__=venv))
+
     print("Installing requrements")
-    subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
+    os.system('. env/bin/activate && pip install -r requirements.txt')
 
 
 if __name__ == "__main__":
