@@ -56,12 +56,19 @@ def launch_terminals():
                         'misc-bashrc']
 
     for i in range(len(terminal_rcfiles)):
-    while i < len(terminal_names):
-        #subprocess.Popen(['xterm', '-T', terminal_names[i],
-        #                  '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
-        subprocess.Popen(['bash', '--rcfile', terminal_rcfiles[i]],
-                         creationflags=subprocess.CREATE_NEW_CONSOLE, shell=False)
+        if OPERATING_SYSTEM == 'Linux':
+            # WSL Kernel
+            if 'Microsoft' in platform.platform():
+                subprocess.Popen(['cmd', '/c', 'start', 'bash'])
+
             # Linux Kernel
+            else:
+                subprocess.Popen(['xterm', '-T', terminal_names[i],
+                                  '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+        elif OPERATING_SYSTEM == 'Windows':
+            subprocess.Popen([],
+                             creationflags=subprocess.CREATE_NEW_CONSOLE,
+                             shell=True)
 
 
 if __name__ == "__main__":
