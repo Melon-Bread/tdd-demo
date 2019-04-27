@@ -3,6 +3,7 @@ import subprocess
 import os
 import platform
 import sys
+import shutil
 
 OPERATING_SYSTEM = platform.system()
 
@@ -18,7 +19,7 @@ def install_packages():
         packages = ['python3-venv', 'meld', 'xterm']
 
         # Check to see if the Distro uses apt-get
-        if subprocess.call(['which', 'apt-get']) == 0:
+        if not shutil.which('apt-get'):
             print("'apt-get' not found you may need to install the following packages:\n{}\n".format(packages))
 
         else:
