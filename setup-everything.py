@@ -17,10 +17,24 @@ def install_packages():
     if OPERATING_SYSTEM == 'Linux':
         packages = ['python3-venv', 'meld', 'xterm']
 
-        subprocess.call(['sudo', 'apt-get', 'update'])
-        for package in packages:
-            print('\nInstalling {}'.format(package))
-            subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
+        # Check to see if the Distro uses apt-get
+        if subprocess.call(['which', 'apt-get']) == 0:
+            print("'apt-get' not found you may need to install the following packages:\n{}\n".format(packages))
+
+        else:
+            subprocess.call(['sudo', 'apt-get', 'update'])
+            for package in packages:
+                print('\nInstalling {}'.format(package))
+                subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
+
+    elif OPERATING_SYSTEM == 'Windows':
+        # No extra packages are needed since venv is included with base windows install
+        pass
+
+    elif OPERATING_SYSTEM == 'Darwin':
+        # TODO: Add macOS packages via homebrew
+        pass
+
     else:
         print("Operating system no supported")
         sys.exit()
@@ -45,13 +59,21 @@ def launch_terminals():
                         'git-status-bashrc',
                         'misc-bashrc']
 
-    i = 0
-    while i < len(terminal_names):
-        #subprocess.Popen(['xterm', '-T', terminal_names[i],
-        #                  '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
-        subprocess.Popen(['bash', '--rcfile', terminal_rcfiles[i]],
-                         creationflags=subprocess.CREATE_NEW_CONSOLE, shell=False)
-        i += 1
+    for i in range(len(terminal_rcfiles)):
+        if OPERATING_SYSTEM == 'Linux':
+            # WSL Kernel
+            if 'Microsoft' in platform.platform():
+                subprocess.Popen(['cmd', '/c', 'start', 'bash'])
+
+            # Linux Kernel
+            else:
+                subprocess.Popen(['xterm', '-T', terminal_names[i],
+                                  '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+        elif OPERATING_SYSTEM == 'Windows':
+            # TODO: Setup the command for opening a new terminal
+            subprocess.Popen([],
+                             creationflags=subprocess.CREATE_NEW_CONSOLE,
+                             shell=True)
 
 
 if __name__ == "__main__":
