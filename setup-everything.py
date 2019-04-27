@@ -29,7 +29,11 @@ def install_packages():
 def setup_venv():
     if not os.path.exists('env/'):
         print("Creating virtual enviorment")
-        subprocess.call(['python3', '-m', 'venv', 'env'])
+        if OPERATING_SYSTEM is not "Windows":
+            subprocess.call(['python3', '-m', 'venv', 'env'])
+        else:
+            # 'python' is the default Python 3 command on Windows
+            subprocess.call(['python', '-m', 'venv', 'env'])
 
     print("Installing requrements")
     os.system('. env/bin/activate && pip install -r requirements.txt')
