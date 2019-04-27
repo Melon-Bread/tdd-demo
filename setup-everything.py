@@ -49,7 +49,7 @@ def setup_venv():
             # 'python' is the default Python 3 command on Windows
             subprocess.call(['python', '-m', 'venv', 'env'])
 
-    print("Installing requrements")
+    print("Installing requirements")
     os.system('. env/bin/activate && pip install -r requirements.txt')
 
 
