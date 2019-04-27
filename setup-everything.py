@@ -66,6 +66,7 @@ def launch_terminals():
                 subprocess.Popen(['xterm', '-T', terminal_names[i],
                                   '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
         elif OPERATING_SYSTEM == 'Windows':
+            # TODO: Setup the command for opening a new terminal
             subprocess.Popen([],
                              creationflags=subprocess.CREATE_NEW_CONSOLE,
                              shell=True)
