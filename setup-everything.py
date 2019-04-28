@@ -29,8 +29,9 @@ def install_packages():
                 subprocess.call(['sudo', 'apt-get', 'install', '-y', package])
 
     elif OPERATING_SYSTEM == 'Windows':
-        # No extra packages are needed since venv is included with base windows install
-        pass
+        if not shutil.which('git'):
+            print('Git not found in $PATH.\nPlease make sure you have Git for Windows installed')
+            sys.exit()
 
     elif OPERATING_SYSTEM == 'Darwin':
         # TODO: Add macOS packages via homebrew
