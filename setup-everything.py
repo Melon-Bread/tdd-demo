@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import subprocess
 import os
 import platform
-import sys
 import shutil
+import subprocess
+import sys
 
 OPERATING_SYSTEM = platform.system()
 
@@ -57,12 +57,14 @@ def setup_venv():
 
 
 def launch_terminals():
+    # TODO: Find out how to name terminal windows on Windows & macOS
     terminal_names = ['testing', 'git status', 'explore']
+    # TODO: Convert the rcfiles into Python methods so they are more universal
     terminal_rcfiles = ['pytest-window-bashrc',
                         'git-status-bashrc',
                         'misc-bashrc']
 
-    for i in range(len(terminal_rcfiles)):
+    for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
             # WSL Kernel
             if 'Microsoft' in platform.platform():
@@ -72,11 +74,16 @@ def launch_terminals():
             else:
                 subprocess.Popen(['xterm', '-T', terminal_names[i],
                                   '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+
         elif OPERATING_SYSTEM == 'Windows':
-            # TODO: Setup the command for opening a new terminal
+            # TODO: Setup the command for opening a new terminal in windows
             subprocess.Popen([],
                              creationflags=subprocess.CREATE_NEW_CONSOLE,
                              shell=True)
+
+        elif OPERATING_SYSTEM == 'Darwin':
+            # TODO: Add the commands to spawn new terminals in macOS
+            pass
 
 
 if __name__ == "__main__":
