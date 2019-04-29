@@ -30,7 +30,7 @@ def install_packages():
 
     elif OPERATING_SYSTEM == 'Windows':
         if not shutil.which('git'):
-            print('Git not found in $PATH.\nPlease make sure you have Git for Windows installed')
+            print('Git not found in $PATH.\nPlease make sure you have Git installed\nhttps://gitforwindows.org/')
             sys.exit()
 
     elif OPERATING_SYSTEM == 'Darwin':
