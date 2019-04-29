@@ -20,7 +20,7 @@ def install_packages():
 
         # Check to see if the Distro uses apt-get
         if not shutil.which('apt-get'):
-            print("'apt-get' not found you may need to install the following packages:\n{}\n".format(packages))
+            print("'apt-get' not found you may need to install the following packages manually:\n{}\n".format(packages))
 
         else:
             subprocess.call(['sudo', 'apt-get', 'update'])
@@ -44,7 +44,7 @@ def install_packages():
 
 def setup_venv():
     if not os.path.exists('env/'):
-        print("Creating virtual enviorment")
+        print("Creating virtual environment")
         if OPERATING_SYSTEM is not "Windows":
             subprocess.call(['python3', '-m', 'venv', 'env'])
             print("Installing requirements")
