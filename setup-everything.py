@@ -47,16 +47,17 @@ def setup_venv():
         print("Creating virtual enviorment")
         if OPERATING_SYSTEM is not "Windows":
             subprocess.call(['python3', '-m', 'venv', 'env'])
+            print("Installing requirements")
+            os.system('. env/bin/activate && pip install -r requirements.txt')
         else:
             # 'python' is the default Python 3 command on Windows
             subprocess.call(['python', '-m', 'venv', 'env'])
-
-    print("Installing requirements")
-    os.system('. env/bin/activate && pip install -r requirements.txt')
+            print("Installing requirements")
+            os.system('env\\Scripts\\activate.bat && pip install -r requirements.txt')
 
 
 def launch_terminals():
-    terminal_names = ['testing', 'git status', 'expore']
+    terminal_names = ['testing', 'git status', 'explore']
     terminal_rcfiles = ['pytest-window-bashrc',
                         'git-status-bashrc',
                         'misc-bashrc']
