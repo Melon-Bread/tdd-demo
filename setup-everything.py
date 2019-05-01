@@ -34,11 +34,15 @@ def install_packages():
             sys.exit()
 
     elif OPERATING_SYSTEM == 'Darwin':
-        # TODO: Add macOS packages via homebrew
-        pass
+        if shutil.which('brew'):
+            subprocess.Popen(['brew', 'update'])
+            subprocess.Popen(['brew', 'install', 'git'])
+        else:
+            print('brew not found in $PATH.\nPlease make sure you have Homebrew installed\nhttps://brew.sh/')
+            sys.exit()
 
     else:
-        print("Operating system no supported")
+        print("Operating system not supported")
         sys.exit()
 
 
@@ -68,6 +72,7 @@ def launch_terminals():
         if OPERATING_SYSTEM == 'Linux':
             # WSL Kernel
             if 'Microsoft' in platform.platform():
+                # TODO: Get the terminals to take the rcfiles (or just convert the rcfiles to methods)
                 subprocess.Popen(['cmd.exe', '/c', 'start', 'bash', '--rcfile', terminal_rcfiles[i]])
 
             # Linux Kernel
