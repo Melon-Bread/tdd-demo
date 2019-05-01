@@ -68,7 +68,7 @@ def launch_terminals():
         if OPERATING_SYSTEM == 'Linux':
             # WSL Kernel
             if 'Microsoft' in platform.platform():
-                subprocess.Popen(['cmd.exe', '/c', 'start', 'bash'])
+                subprocess.Popen(['cmd.exe', '/c', 'start', 'bash', '--rcfile', terminal_rcfiles[i]]])
 
             # Linux Kernel
             else:
