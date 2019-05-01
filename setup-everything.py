@@ -87,9 +87,11 @@ def launch_terminals():
                              shell=True)
 
         elif OPERATING_SYSTEM == 'Darwin':
-            # TODO: Add the commands to spawn new terminals in macOS
+            # TODO: Add the commands to tell the terminals what to do
+            subprocess.Popen(['open', '-a', 'Terminal'])
             pass
 
 
 if __name__ == "__main__":
+    # TODO: Maybe add args for when anew terminal spawns to call a method that replaced a rcfile
     main()
