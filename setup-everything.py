@@ -35,8 +35,8 @@ def install_packages():
 
     elif OPERATING_SYSTEM == 'Darwin':
         if shutil.which('brew'):
-            subprocess.Popen(['brew', 'update'])
-            subprocess.Popen(['brew', 'install', 'git'])
+            subprocess.call(['brew', 'update'])
+            subprocess.call(['brew', 'install', 'git'])
         else:
             print('brew not found in $PATH.\nPlease make sure you have Homebrew installed\nhttps://brew.sh/')
             sys.exit()
