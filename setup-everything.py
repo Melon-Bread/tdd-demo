@@ -65,21 +65,21 @@ def launch_terminals():
     # TODO: Find out how to name terminal windows on Windows & macOS
     terminal_names = ['testing', 'git status', 'explore']
     # TODO: Convert the rcfiles into Python methods so they are more universal
-    terminal_rcfiles = ['pytest-window-bashrc',
-                        'git-status-bashrc',
-                        'misc-bashrc']
+    python_scripts = ['pytest.py',
+                        'git-status.py',
+                        'misc.py']
 
     for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
             # WSL Kernel
             if 'Microsoft' in platform.platform():
                 # TODO: Get the terminals to take the rcfiles (or just convert the rcfiles to methods)
-                subprocess.Popen(['cmd.exe', '/c', 'start', 'bash', '--rcfile', terminal_rcfiles[i]])
+                subprocess.Popen(['cmd.exe', '/c', 'start', 'python', python_scripts[i]])
 
             # Linux Kernel
             else:
-                subprocess.Popen(['xterm', '-T', terminal_names[i],
-                                  '-e', 'bash', '--rcfile', terminal_rcfiles[i]])
+                subprocess.call(['xterm', '-T', terminal_names[i],
+                                  '-e', 'python3', python_scripts[i]])
 
         elif OPERATING_SYSTEM == 'Windows':
             # TODO: Setup the command for opening a new terminal in windows
