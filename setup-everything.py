@@ -9,10 +9,10 @@ import sys
 OPERATING_SYSTEM = platform.system()
 
 
-def main(args):
+def main():
     install_packages()
     setup_venv()
-    launch_terminals(args)
+    launch_terminals()
 
 
 def install_packages():
@@ -61,7 +61,7 @@ def setup_venv():
             os.system('env\\Scripts\\activate.bat && pip install -r requirements.txt')
 
 
-def launch_terminals(args):
+def launch_terminals():
     # TODO: Find out how to name terminal windows on Windows & macOS
     terminal_names = ['testing', 'git status', 'explore']
     # TODO: Convert the rcfiles into Python methods so they are more universal
@@ -94,10 +94,4 @@ def launch_terminals(args):
 
 
 if __name__ == "__main__":
-    # TODO: Maybe add args for when anew terminal spawns to call a method that replaced a rcfile
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-t', '--terminal', required=False)
-
-    args = parser.parse_args()
     main()
