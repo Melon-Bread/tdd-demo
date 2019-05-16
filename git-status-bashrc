@@ -6,4 +6,4 @@ fi
 source env/bin/activate
 alias gy='git difftool -t meld -y'
 
-watch 'git status'
+watch;l 'git status'
