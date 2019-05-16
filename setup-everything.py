@@ -71,25 +71,18 @@ def launch_terminals():
 
     for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
-            # WSL Kernel
-            if 'Microsoft' in platform.platform():
-                # TODO: Get the terminals to take the rcfiles (or just convert the rcfiles to methods)
-                subprocess.Popen(['cmd.exe', '/c', 'start', 'python', python_scripts[i]])
+            subprocess.Popen(['xterm', '-T', terminal_names[i],
+                             '-e', 'python3', python_scripts[i]]).wait()
 
-            # Linux Kernel
-            else:
-                subprocess.call(['xterm', '-T', terminal_names[i],
-                                  '-e', 'python3', python_scripts[i]])
 
         elif OPERATING_SYSTEM == 'Windows':
             # TODO: Setup the command for opening a new terminal in windows
-            subprocess.Popen([],
-                             creationflags=subprocess.CREATE_NEW_CONSOLE,
-                             shell=True)
+            subprocess.call(['start', '/wait', 'python', python_scripts[i]],
+                            shell=True)
 
         elif OPERATING_SYSTEM == 'Darwin':
             # TODO: Add the commands to tell the terminals what to do
-            subprocess.Popen(['open', '-a', 'Terminal'])
+            subprocess.call(['open', '-W', '-a', 'Terminal.app', 'python3', '--args', python_scripts[i]])
             pass
 
 
