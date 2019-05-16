@@ -66,8 +66,8 @@ def launch_terminals():
     terminal_names = ['testing', 'git status', 'explore']
     # TODO: Convert the rcfiles into Python methods so they are more universal
     python_scripts = ['pytest.py',
-                        'git-status.py',
-                        'misc.py']
+                      'git-status.py',
+                      'misc.py']
 
     for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
