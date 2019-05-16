@@ -3,9 +3,4 @@
 import os
 import platform
 
-
-if platform.system == 'Windows':
-    # TODO: Add 'watch' windows equivalent
-    pass
-else:
-    os.system('watch git status')
+os.system('watch git status')
