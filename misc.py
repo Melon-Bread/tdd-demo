@@ -4,11 +4,7 @@ import platform
 import os
 
 for i in range(6):
-    if i == 4 or 6:
-        result = 'pass'
-    else:
-        result = 'fail'
-    print('git checkout step-{} watch tests {} in py.test window'.format(i, result))
+    print('git checkout step-{}'.format(i))
 
 if platform.system == 'Windows':
     os.system('env\\Scripts\\activate.bat')
