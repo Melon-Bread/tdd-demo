@@ -71,8 +71,9 @@ def launch_terminals():
 
     for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
-            subprocess.call(['xterm', '-T', terminal_names[i],
-                             '-e', 'python3', python_scripts[i]])
+            subprocess.Popen(['xterm', '-T', terminal_names[i],
+                             '-e', 'python3', python_scripts[i]], stdout=subprocess.PIPE)
+
 
         elif OPERATING_SYSTEM == 'Windows':
             # TODO: Setup the command for opening a new terminal in windows
