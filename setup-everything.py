@@ -62,7 +62,7 @@ def setup_venv():
 
 
 def launch_terminals():
-    # TODO: Find out how to name terminal windows on Windows & macOS
+    # TODO: Find out how to name terminal windows on Windows (may need to write a PS script) & macOS
     terminal_names = ['testing', 'git status', 'explore']
     # TODO: Convert the rcfiles into Python methods so they are more universal
     python_scripts = ['pytest.py',
@@ -72,17 +72,19 @@ def launch_terminals():
     for i in range(3):
         if OPERATING_SYSTEM == 'Linux':
             subprocess.Popen(['xterm', '-T', terminal_names[i],
-                             '-e', 'python3', python_scripts[i]], stdout=subprocess.PIPE)
+                              '-e', 'python3', python_scripts[i]],
+                             stdout=subprocess.PIPE)
 
 
         elif OPERATING_SYSTEM == 'Windows':
             # TODO: Setup the command for opening a new terminal in windows
             subprocess.call(['start', '/wait', 'python', python_scripts[i]],
-                            shell=True)
+                            stdout=subprocess.PIPE)
 
         elif OPERATING_SYSTEM == 'Darwin':
             # TODO: Add the commands to tell the terminals what to do
-            subprocess.call(['open', '-W', '-a', 'Terminal.app', 'python3', '--args', python_scripts[i]])
+            subprocess.call(['open', '-W', '-a', 'Terminal.app', 'python3', '--args', python_scripts[i]],
+                            stdout=subprocess.PIPE)
             pass
 
 
